@@ -2,7 +2,6 @@ package com.core.work.repository;
 
 
 import com.core.work.entity.SheduleJobEntity;
-import com.core.work.entity.SysUserTokenEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -13,17 +12,13 @@ public interface SheduleJobRepository extends JpaRepository<SheduleJobEntity, St
 
     void deleteByName(String name);
     List<SheduleJobEntity> findByName(String name);
-    SheduleJobEntity findByNameAndType(String name, int type);
-
     /**
-     * @Auther: Theo
-     * @Date: 2018/8/27 0027 15:58
-     * @Description:
+     * @Description: name存id    type目前1为SysUserEntity
+     * @Author: 吴鹏
+     * @Email: 694798354@qq.com
+     * @Param: [name, type]
+     * @return com.core.work.entity.SheduleJobEntity
+     * @date 2019/3/11 0011 下午 17:04
      */
-    interface SysUserTokenRepository extends JpaRepository<SysUserTokenEntity,String>, JpaSpecificationExecutor<SysUserTokenEntity> {
-
-        SysUserTokenEntity findByUserId(String userId);
-
-        SysUserTokenEntity findByToken(String token);
-    }
+    SheduleJobEntity findByNameAndType(String name, int type);
 }

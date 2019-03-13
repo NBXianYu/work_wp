@@ -1,6 +1,6 @@
 package com.core.work.service.impl;
 
-import com.core.work.repository.SheduleJobRepository;
+import com.core.work.repository.SysUserTokenRepository;
 import com.core.work.service.ShiroService;
 import com.core.work.entity.SysUserEntity;
 import com.core.work.entity.SysUserTokenEntity;
@@ -21,11 +21,11 @@ import java.util.*;
 @Service
 public class ShiroServiceImpl implements ShiroService {
     private final SysUserService sysUserService;
-    private final SheduleJobRepository.SysUserTokenRepository sysUserTokenRepository;
+    private final SysUserTokenRepository sysUserTokenRepository;
 
 
     @Autowired
-    public ShiroServiceImpl(SysUserService sysUserService, SheduleJobRepository.SysUserTokenRepository sysUserTokenRepository) {
+    public ShiroServiceImpl(SysUserService sysUserService, SysUserTokenRepository sysUserTokenRepository) {
         this.sysUserService = sysUserService;
         this.sysUserTokenRepository = sysUserTokenRepository;
     }

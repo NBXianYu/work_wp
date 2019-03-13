@@ -16,27 +16,13 @@ import java.util.Map;
  * @Description:
  */
 @Service
-public class SysRoleServiceImpl implements SysRoleService {
+public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleEntity, SysRoleRepository> implements SysRoleService {
     @Autowired
     SysRoleRepository sysRoleRepository;
-
-    @Override
-    public List<SysRoleEntity> findAll() {
-        return null;
-    }
 
     @Override
     public List<SysRoleEntity> findByParams(Map params) {
         return null;
     }
 
-    @Override
-    public void deleteByIds(List<String> ids) {
-        sysRoleRepository.deleteById(ids.get(0));
-    }
-
-    @Override
-    public SysRoleEntity findById(String id) {
-        return null;
-    }
 }

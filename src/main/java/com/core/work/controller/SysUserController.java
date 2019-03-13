@@ -1,9 +1,10 @@
 package com.core.work.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.core.work.utils.SpringContextUtils;
+import com.core.work.utils.Result;
 import com.core.work.service.SysUserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,15 +28,12 @@ public class SysUserController extends BaseController{
 
 
     @ApiOperation(value = "查询所有用户", notes = "查询所有用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "用户名", value = "name", dataType = "String", paramType = "query",required = false)
+    })
     @GetMapping("/findAll")
-    public String addLogin() {
-        SysUserService sysUserService = (SysUserService) SpringContextUtils.getBean("sysUserService");
-//        SysUserEntity sysUserEntity = new SysUserEntity();
-//        sysUserEntity.setUsername("吴鹏");
-//        sysUserEntity.setPassWord("pass");
-//        sysUserService.addSysUser(sysUserEntity);
-
-        return JSONObject.toJSON(sysUserService.findAll()).toString();
+    public Result addLogin() {
+        return Result.ok().putResult(sysUserService.findAll());
     }
 
 }

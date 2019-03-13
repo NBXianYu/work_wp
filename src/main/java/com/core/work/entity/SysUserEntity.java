@@ -80,4 +80,18 @@ public class SysUserEntity extends AbstractEntity {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "SysUserEntity{" +
+                "phone='" + phone + '\'' +
+                ", username='" + username + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", salt='" + salt + '\'' +
+                ", status=" + status +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                ", isDelete=" + isDelete +
+                '}';
+    }
 }

@@ -22,8 +22,6 @@ public class AbstractEntity {
     @Id
     @GenericGenerator(name = "createUUID", strategy = "uuid")
     @GeneratedValue(generator = "createUUID")
-    // 数字id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", length = 32)
     private String id;
 
@@ -44,5 +42,13 @@ public class AbstractEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
     }
 }

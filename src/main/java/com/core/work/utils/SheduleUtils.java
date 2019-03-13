@@ -11,7 +11,14 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.UUID;
 
-
+/** 创建定时器工具类
+ * @Description:
+ * @Author: 吴鹏
+ * @Email: 694798354@qq.com
+ * @Param:
+ * @return
+ * @date 2019/3/12 0012 下午 18:30
+ */
 @Component
 public class SheduleUtils {
 
@@ -29,7 +36,7 @@ public class SheduleUtils {
     }
 
     /**
-     * @Description: 定时启动用户定时器
+     * @Description: 创建用户定时器
      * @Author: 吴鹏
      * @Email: 694798354@qq.com
      * @Param: [name, startTime]
@@ -41,7 +48,7 @@ public class SheduleUtils {
             sheduleJobRepository = (SheduleJobRepository) SpringContextUtils.getBean("sheduleJobRepository");
             SheduleJobEntity sheduleJobEntity=null;
 
-            //绑定日常工作实例id
+            // 创建job id
             String uuid=UUID.randomUUID().toString().replaceAll("-", "");
 
             JobDetail jobDetail= JobBuilder.newJob(SysUserJob.class).
@@ -65,8 +72,6 @@ public class SheduleUtils {
             }
             sheduleJobEntity.setKey(uuid);
             sheduleJobRepository.save(sheduleJobEntity);
-
-
         }catch (Exception e){
             e.printStackTrace();
             throw new BaseException("创建用户定时器失败");

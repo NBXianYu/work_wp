@@ -15,4 +15,7 @@ import org.springframework.stereotype.Service;
 public interface SysUserService extends BaseService<SysUserEntity>{
 
     void addSysUser(SysUserEntity sysUserEntity);
+
+    void testQuartz(String param);
+
 }

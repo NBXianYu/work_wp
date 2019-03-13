@@ -9,17 +9,21 @@ import com.core.work.entity.SysUserEntity;
 import com.core.work.service.SysUserService;
 import org.quartz.*;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @Author 吴鹏
- * @Date Created in 上午 10:49 2019/2/20 0020
- * @Email 694798354@qq.com
- * @Description:
+ * @Description: 用户信息job
+ * @Author: 吴鹏
+ * @Email: 694798354@qq.com
+ * @Param:
+ * @return
+ * @date 2019/3/12 0012 下午 12:05
  */
 @Component
 public class SysUserJob implements Job {
     @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
+    @Transactional(rollbackFor = Exception.class)
+    public void execute(JobExecutionContext context) throws BaseException {
         SheduleJobService sheduleJobService = (SheduleJobService) SpringContextUtils.getBean("sheduleJobServiceImpl");
         SysUserService sysUserService = (SysUserService) SpringContextUtils.getBean("sysUserServiceImpl");
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
@@ -28,7 +32,7 @@ public class SysUserJob implements Job {
         System.out.println(sysUserEntity.toString());
         System.out.println("学生信息：" + JSONObject.toJSON(sysUserEntity).toString());
 
-        //流程启动后删除sheduleJobEntity
+        //一个定时器执行一次，执行后删除sheduleJobEntity
         sheduleJobService.deleteByName(userId);
         try {
             //移除job

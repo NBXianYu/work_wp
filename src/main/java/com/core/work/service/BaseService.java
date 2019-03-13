@@ -53,4 +53,33 @@ public interface BaseService<T extends AbstractEntity> {
      */
     T findById(String id);
 
+    /**
+     * @Description: 根据id查询
+     * @Author: 吴鹏
+     * @Email: 694798354@qq.com
+     * @Param: [id]
+     * @return T
+     * @date 2019/1/30 0030 下午 18:21
+     */
+    List<T> findByIds(List<String> ids);
+
+    /**
+     * @Description: 根据实体的List获取他们的id 的List
+     * @Author: 吴鹏
+     * @Email: 694798354@qq.com
+     * @Param: [entityList]
+     * @return java.util.List<java.lang.String>
+     * @date 2019/3/12 0012 上午 11:07
+     */
+    List<String> getIdList(List<T> entityList);
+
+    /**
+     * @Description: 根据Id 判断是否存在这个实体
+     * @Author: 吴鹏
+     * @Email: 694798354@qq.com
+     * @Param: [id]
+     * @return boolean
+     * @date 2019/3/12 0012 上午 11:08
+     */
+    boolean exist(String id);
 }
