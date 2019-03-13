@@ -11,4 +11,14 @@ import com.core.work.entity.SysUserEntity;
  */
 public interface SysUserRepository extends BaseRepository<SysUserEntity, String> {
 
+    /**
+     * @Description: 根据手机号查询用户
+     * @Author: 吴鹏
+     * @Email: 694798354@qq.com
+     * @Param: [mobile]
+     * @return com.core.work.entity.SysUserEntity
+     * @date 2019/3/13 0013 上午 11:02
+     */
+    SysUserEntity findByPhone(String mobile);
+
 }

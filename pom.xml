@@ -26,6 +26,7 @@
         <lang3.version>3.8</lang3.version>
         <swagger.layer>1.1.3</swagger.layer>
         <joda.time.version>2.9.9</joda.time.version>
+        <commons.io.version>2.5</commons.io.version>
     </properties>
 
     <dependencies>
@@ -96,6 +97,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
         </dependency>
 
         <!-- Quartz -->

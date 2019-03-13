@@ -16,7 +16,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "sys_user_token")
-@Where(clause = "is_delete=0")
 public class SysUserTokenEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -40,4 +40,9 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserRe
         System.out.println("静态定时器执行成功：" + DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         System.out.println("传入参数值为：" + param);
     }
+
+    @Override
+    public SysUserEntity queryByMobile(String mobile) {
+        return sysUserRepository.findByPhone(mobile);
+    }
 }

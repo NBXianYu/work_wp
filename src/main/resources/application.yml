@@ -13,6 +13,10 @@ spring:
         username: root
         password: pass1234
         driver-class-name: com.mysql.jdbc.Driver
+    http:
+        encoding:
+            charset: utf-8
+            enabled: true
 
 server:
     port: 9090

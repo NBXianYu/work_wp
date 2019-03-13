@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(description = "用户登录接口")
 @RestController
 @RequestMapping("/login")
-public class SysUserController extends BaseController{
+public class SysUserController extends AbstractController{
     @Autowired
     private SysUserService sysUserService;
 

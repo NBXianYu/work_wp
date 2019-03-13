@@ -7,8 +7,6 @@ import org.apache.shiro.authc.AuthenticationToken;
  * @Description:
  * @Author: 吴鹏
  * @Email: 694798354@qq.com
- * @Param:
- * @return
  * @date 2019/1/28 0028 下午 16:28
  */
 public class OAuth2Token implements AuthenticationToken {
