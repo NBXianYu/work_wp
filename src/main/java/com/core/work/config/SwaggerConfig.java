@@ -32,11 +32,6 @@ public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {
-//        ParameterBuilder tokenPar = new ParameterBuilder();
-//        List<Parameter> pars = new ArrayList<Parameter>();
-//        tokenPar.name("token").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
-//        pars.add(tokenPar.build());
-
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
@@ -45,7 +40,6 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .securitySchemes(security());
-//                .globalOperationParameters(pars);
     }
 
     private ApiInfo apiInfo() {
