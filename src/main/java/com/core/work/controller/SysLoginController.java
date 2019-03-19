@@ -2,6 +2,7 @@ package com.core.work.controller;
 
 import com.core.work.entity.SysUserEntity;
 import com.core.work.form.SysLoginForm;
+import com.core.work.form.UserForm;
 import com.core.work.service.SysUserService;
 import com.core.work.service.SysUserTokenService;
 import com.core.work.utils.Result;
@@ -67,6 +68,21 @@ public class SysLoginController extends AbstractController {
     public Result logout() {
         sysUserTokenService.logout(getUserId());
         return Result.ok();
+    }
+
+    /**
+     * @Description: 注册
+     * @Author: 吴鹏
+     * @Email: 694798354@qq.com
+     * @Param: [userForm]
+     * @return com.core.work.utils.Result
+     * @date 2019/3/19 0019 下午 14:21
+     */
+    @ApiOperation(value = "用户注册", notes = "用户注册")
+    @PostMapping("/regist")
+    public Result regist(@RequestBody UserForm userForm){
+        sysUserService.save(UserForm.getUserByUserForm(null, userForm));
+        return Result.ok().putResult("注册成功");
     }
 
 }

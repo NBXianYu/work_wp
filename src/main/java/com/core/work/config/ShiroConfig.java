@@ -57,8 +57,10 @@ public class ShiroConfig {
         Map<String, String> filterMap = new LinkedHashMap<>();
         // 需要拦截的，上面filter设置啥名字，value就啥名字
         filterMap.put("/test/hello", "shiro");
+//        filterMap.put("/file/*", "anon");
+        filterMap.put("/user/**", "anon");
         // 直接放行的
-        filterMap.put("/sys/login", "anon");
+        filterMap.put("/sys/**", "anon");
         filterMap.put("/doc.html", "anon");
 
         shiroFilter.setFilterChainDefinitionMap(filterMap);

@@ -3,9 +3,10 @@ package com.core.work.service;
 import com.core.work.utils.Result;
 
 /**
- * @author: 成都阳帆网络科技有限公司
- * @date: 2018/8/21 0021 10:32
- * @description: 用户token
+ * @Description: 用户token
+ * @Author: 吴鹏
+ * @Email: 694798354@qq.com
+ * @date 2019/3/19 0019 下午 14:10
  */
 public interface SysUserTokenService {
 

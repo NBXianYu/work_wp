@@ -39,7 +39,7 @@ public class SysUserEntity extends AbstractEntity {
 
     @Column(name = "status", length = 1)
     @ApiModelProperty(name = "status", value = "状态0禁用；1：正常", dataType = "int")
-    private Integer status;
+    private Integer status = 1;
 
     public String getPhone() {
         return phone;

@@ -6,9 +6,10 @@ import com.core.work.entity.SysUserTokenEntity;
 import java.util.Set;
 
 /**
- * @author : 成都阳帆网络科技有限公司
- * @date : 2018/8/19 21:41
- * @description : Shiro 相关接口
+ * @Description: Shiro 相关接口
+ * @Author: 吴鹏
+ * @Email: 694798354@qq.com
+ * @date 2019/3/19 0019 下午 14:10
  */
 public interface ShiroService {
     /**

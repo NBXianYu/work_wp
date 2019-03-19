@@ -13,9 +13,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author : 成都阳帆网络科技有限公司
- * @date : 2018/8/17 13:16
- * @description : 日期处理
+ * @Description: 日期处理
+ * @Author: 吴鹏
+ * @Email: 694798354@qq.com
+ * @date 2019/3/19 0019 下午 14:10
  */
 public class DateUtils {
     /**

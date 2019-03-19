@@ -4,24 +4,15 @@ package com.core.work.form;
 
 
 /**
- * @author: 成都阳帆网络科技有限公司
- * @date: 2018/8/21 0021 10:26
- * @description: 登陆表单
+ * @Description: 登陆表单
+ * @Author: 吴鹏
+ * @Email: 694798354@qq.com
+ * @date 2019/3/19 0019 下午 14:06
  */
 public class SysLoginForm {
-    private String username;
+    private String mobile;
     private String password;
     private String captcha;
-    private String uuid;
-    private String mobile;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getPassword() {
         return password;
@@ -37,14 +28,6 @@ public class SysLoginForm {
 
     public void setCaptcha(String captcha) {
         this.captcha = captcha;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
     }
 
     public String getMobile() {

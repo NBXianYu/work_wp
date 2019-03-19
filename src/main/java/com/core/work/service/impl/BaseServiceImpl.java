@@ -62,4 +62,9 @@ public abstract class BaseServiceImpl<T extends AbstractEntity, R extends BaseRe
         }
         return idList;
     }
+
+    @Override
+    public T save(T entity) {
+        return repository.save(entity);
+    }
 }

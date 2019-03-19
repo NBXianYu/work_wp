@@ -11,9 +11,10 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 
 /**
- * @author : 成都阳帆网络科技有限公司
- * @date : 2018/8/17 10:56
- * @description : 异常处理器
+ * @Description: 异常处理器
+ * @Author: 吴鹏
+ * @Email: 694798354@qq.com
+ * @date 2019/3/19 0019 下午 14:09
  */
 @RestControllerAdvice
 public class BaseExceptionHandler {

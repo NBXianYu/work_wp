@@ -82,4 +82,14 @@ public interface BaseService<T extends AbstractEntity> {
      * @date 2019/3/12 0012 上午 11:08
      */
     boolean exist(String id);
+
+    /**
+     * @Description: 新增一个实体
+     * @Author: 吴鹏
+     * @Email: 694798354@qq.com
+     * @Param: [entity]
+     * @return T
+     * @date 2019/3/19 0019 上午 11:56
+     */
+    T save(T entity);
 }
