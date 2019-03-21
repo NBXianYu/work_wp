@@ -25,8 +25,8 @@ public class SysUserEntity extends AbstractEntity {
     private String phone;
 
     @Column(name = "user_name", length = 60)
-    @ApiModelProperty(name = "username", value = "用户名", dataType = "String")
-    private String username;
+    @ApiModelProperty(name = "userName", value = "用户名", dataType = "String")
+    private String userName;
 
     @Column(name = "passWord", length = 200)
     @ApiModelProperty(name = "passWord", value = "密码", dataType = "String")
@@ -49,12 +49,12 @@ public class SysUserEntity extends AbstractEntity {
         this.phone = phone;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassWord() {
@@ -85,7 +85,7 @@ public class SysUserEntity extends AbstractEntity {
     public String toString() {
         return "SysUserEntity{" +
                 "phone='" + phone + '\'' +
-                ", username='" + username + '\'' +
+                ", username='" + userName + '\'' +
                 ", passWord='" + passWord + '\'' +
                 ", salt='" + salt + '\'' +
                 ", status=" + status +

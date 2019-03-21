@@ -15,7 +15,7 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
  */
 public class UserForm {
 
-    @ApiModelProperty(name = "id", value = "id", dataType = "String")
+    @ApiModelProperty(name = "id", value = "id(修改用户才传)", dataType = "String")
     private String id;
 
     @ApiModelProperty(name = "phone", value = "手机号", dataType = "String")
@@ -76,9 +76,9 @@ public class UserForm {
         if (StringUtils.isBlank(userForm.getUserName())) {
             throw new BaseException("用户名不能为空");
         }
-        if (StringUtils.isBlank(userForm.getPhone())) {
-            throw new BaseException("电话号码不能为空");
-        }
+//        if (StringUtils.isBlank(userForm.getPhone())) {
+//            throw new BaseException("电话号码不能为空");
+//        }
         if (sysUserEntity == null) {
             sysUserEntity = new SysUserEntity();
         }
@@ -87,7 +87,7 @@ public class UserForm {
         sysUserEntity.setPassWord(new Sha256Hash(userForm.getPassword(), salt).toHex());
         sysUserEntity.setSalt(salt);
         sysUserEntity.setPhone(userForm.getPhone());
-        sysUserEntity.setUsername(userForm.getUserName());
+        sysUserEntity.setUserName(userForm.getUserName());
         return sysUserEntity;
     }
 }

@@ -44,4 +44,14 @@ public interface SysUserService extends BaseService<SysUserEntity>{
      */
     SysUserEntity queryByMobile(String mobile);
 
+    /**
+     * @Description: 根据用户名查询用户
+     * @Author: 吴鹏
+     * @Email: 694798354@qq.com
+     * @Param: [mobile]
+     * @return com.core.work.entity.SysUserEntity
+     * @date 2019/3/13 0013 上午 11:00
+     */
+    SysUserEntity queryByName(String userName);
+
 }

@@ -20,5 +20,23 @@ public interface SysUserRepository extends BaseRepository<SysUserEntity, String>
      * @date 2019/3/13 0013 上午 11:02
      */
     SysUserEntity findByPhone(String mobile);
+    /**
+     * @Description: 根据用户名查询用户
+     * @Author: 吴鹏
+     * @Email: 694798354@qq.com
+     * @Param: [mobile]
+     * @return com.core.work.entity.SysUserEntity
+     * @date 2019/3/13 0013 上午 11:02
+     */
+    SysUserEntity findByUserName(String userName);
 
+    /**
+     * @Description: 根据用户名判断用户是否存在
+     * @Author: 吴鹏
+     * @Email: 694798354@qq.com
+     * @Param: [mobile]
+     * @return com.core.work.entity.SysUserEntity
+     * @date 2019/3/13 0013 上午 11:02
+     */
+    boolean existsByUserName(String userName);
 }

@@ -1,6 +1,7 @@
 package com.core.work.service.impl;
 
 import com.core.work.entity.SysUserEntity;
+import com.core.work.exception.BaseException;
 import com.core.work.repository.SysUserRepository;
 import com.core.work.service.SysUserService;
 import com.core.work.utils.DateUtils;
@@ -32,6 +33,9 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserRe
 
     @Override
     public void addSysUser(SysUserEntity sysUserEntity) {
+        if (sysUserRepository.existsByUserName(sysUserEntity.getUserName())){
+            throw new BaseException("当前用户名已存在，请更换");
+        }
         sysUserRepository.save(sysUserEntity);
     }
 
@@ -44,5 +48,10 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserRe
     @Override
     public SysUserEntity queryByMobile(String mobile) {
         return sysUserRepository.findByPhone(mobile);
+    }
+
+    @Override
+    public SysUserEntity queryByName(String userName) {
+        return sysUserRepository.findByUserName(userName);
     }
 }

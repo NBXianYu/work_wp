@@ -43,7 +43,7 @@ public class SysLoginController extends AbstractController {
     public Map<String, Object> login(@RequestBody SysLoginForm form) throws IOException {
 
         //用户信息
-        SysUserEntity user = sysUserService.queryByMobile(form.getMobile());
+        SysUserEntity user = sysUserService.queryByName(form.getUserName());
         //账号不存在、密码错误
         if (user == null || !user.getPassWord().equals(new Sha256Hash(form.getPassword(), user.getSalt()).toHex())) {
             return Result.error("账号或密码不正确");
@@ -81,7 +81,7 @@ public class SysLoginController extends AbstractController {
     @ApiOperation(value = "用户注册", notes = "用户注册")
     @PostMapping("/regist")
     public Result regist(@RequestBody UserForm userForm){
-        sysUserService.save(UserForm.getUserByUserForm(null, userForm));
+        sysUserService.addSysUser(UserForm.getUserByUserForm(null, userForm));
         return Result.ok().putResult("注册成功");
     }
 
