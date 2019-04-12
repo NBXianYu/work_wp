@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -89,11 +90,16 @@ public class DataServiceImpl implements DataService {
         FileInputStream fileInputStream = null;
         OutputStream outputStream = null;
         try {
-            httpResponse.setCharacterEncoding("utf-8");
+            fileName = URLDecoder.decode(fileName, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        fileName = fileName.replace("&amp;", "&");
+        try {
             httpResponse.setContentType("application/octet-stream");
             // 设置文件名
-            httpResponse.setHeader("Content-Disposition", "attachment;filename*=UTF-8''"
-                    + URLEncodeUtil.getURLEncoderString(new String(URLEncodeUtil.getURLDecoderString(fileName).getBytes(), StandardCharsets.UTF_8)));
+            httpResponse.setHeader("Content-Disposition", "attachment;filename="
+                    + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
             String folderUrl;
 
             if (fileName.endsWith(".mp4")) {
