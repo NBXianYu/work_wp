@@ -3,6 +3,7 @@ package com.core.work.service.impl;
 import com.core.work.entity.ComicEntity;
 import com.core.work.entity.vo.ComicVo;
 import com.core.work.repository.ComicRepository;
+import com.core.work.service.ComicService;
 import com.core.work.service.spec.ComicSpec;
 import com.core.work.utils.JpaPageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.Map;
  * @Description:
  */
 @Service
-public class ComicServiceImpl extends BaseServiceImpl<ComicEntity, ComicRepository> {
+public class ComicServiceImpl extends BaseServiceImpl<ComicEntity, ComicRepository> implements ComicService{
 
     @Autowired
     ComicRepository comicRepository;
