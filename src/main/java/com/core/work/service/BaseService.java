@@ -31,7 +31,9 @@ public interface BaseService<T extends AbstractEntity> {
      * @return java.util.List<T>
      * @date 2019/1/28 0028 上午 11:43
      */
-    List<T> findByParams(Map params);
+    List<T> findByParams(Map<String, Object> params);
+
+    Map<String, Object> getHome(Map<String, Object> params);
 
     /**
      * @Description: 根据ID列表删除数据

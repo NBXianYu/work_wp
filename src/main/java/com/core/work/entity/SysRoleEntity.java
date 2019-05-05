@@ -1,18 +1,13 @@
 package com.core.work.entity;
 
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
-/**
- * @Author 吴鹏
- * @Description:用户角色实体
- *
- * @Author
- * @Date 2018/12/20 0020 14:58
- */
+@ApiModel("用户角色实体")
 @Entity
 @Table(name = "sys_user_role")
 @Where(clause = "is_delete=0")

@@ -17,7 +17,7 @@ import java.util.Map;
 @Service
 public class FileServiceImpl extends BaseServiceImpl<FileEntity, FileRepository> implements FileService {
     @Override
-    public List<FileEntity> findByParams(Map params) {
+    public List<FileEntity> findByParams(Map<String, Object> params) {
         return null;
     }
 }

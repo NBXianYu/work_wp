@@ -1,11 +1,13 @@
 package com.core.work.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @Author 吴鹏
@@ -40,6 +42,12 @@ public class SysUserEntity extends AbstractEntity {
     @Column(name = "status", length = 1)
     @ApiModelProperty(name = "status", value = "状态0禁用；1：正常", dataType = "int")
     private Integer status = 1;
+
+    @JsonBackReference
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinTable(name = "comic_user", joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "comic_id")})
+    private List<ComicEntity> comicEntityList;
 
     public String getPhone() {
         return phone;
@@ -79,6 +87,14 @@ public class SysUserEntity extends AbstractEntity {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public List<ComicEntity> getComicEntityList() {
+        return comicEntityList;
+    }
+
+    public void setComicEntityList(List<ComicEntity> comicEntityList) {
+        this.comicEntityList = comicEntityList;
     }
 
     @Override

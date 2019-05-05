@@ -36,15 +36,27 @@ public abstract class BaseServiceImpl<T extends AbstractEntity, R extends BaseRe
     @Transactional(rollbackFor = Exception.class)
     public void deleteByIds(List<String> ids) {
         List<T> entities = findByIds(ids);
-        for (T entity : entities) {
-            entity.setIsDelete(1);
+        if (entities != null && entities.size() > 0) {
+            for (T entity : entities) {
+                entity.setIsDelete(1);
+            }
+            repository.saveAll(entities);
         }
-        repository.saveAll(entities);
     }
 
     @Override
     public List<T> findAll(){
         return repository.findAll();
+    }
+
+    @Override
+    public Map<String, Object> getHome(Map<String, Object> params){
+        return null;
+    }
+
+    @Override
+    public List<T> findByParams(Map<String, Object> params) {
+        return null;
     }
 
     @Override

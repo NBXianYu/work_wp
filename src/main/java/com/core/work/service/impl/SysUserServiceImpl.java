@@ -27,7 +27,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserRe
     private SysUserRepository sysUserRepository;
 
     @Override
-    public List<SysUserEntity> findByParams(Map params) {
+    public List<SysUserEntity> findByParams(Map<String, Object> params) {
         return sysUserRepository.findAll();
     }
 

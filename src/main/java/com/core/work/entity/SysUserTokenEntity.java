@@ -1,5 +1,6 @@
 package com.core.work.entity;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Where;
@@ -14,6 +15,7 @@ import java.util.Date;
  * @Email 694798354@qq.com
  * @Description:
  */
+@ApiModel("用户token实体类")
 @Entity
 @Table(name = "sys_user_token")
 public class SysUserTokenEntity implements Serializable {
