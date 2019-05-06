@@ -10,11 +10,17 @@
     </parent>
     <groupId>com.core</groupId>
     <artifactId>work</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.7</version>
     <name>work</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
+        <!-- docker相关参数-start-->
+        <docker.repository>registry.cn-hangzhou.aliyuncs.com</docker.repository>
+        <docker.images.name>
+            ${project.artifactId}-${project.version}
+        </docker.images.name>
+        <!-- docker相关参数-end-->
         <java.version>1.8</java.version>
         <mysql.version>5.1.34</mysql.version>
         <fastjson.version>1.2.56</fastjson.version>
@@ -133,8 +139,36 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.3</version>
+                <configuration>
+
+                    <imageName>${docker.images.name}</imageName>
+                    <!--<imageTags>-->
+                        <!--<imageTag>${project.version}</imageTag>-->
+                    <!--</imageTags>-->
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>

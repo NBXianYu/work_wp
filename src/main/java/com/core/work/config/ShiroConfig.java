@@ -55,11 +55,15 @@ public class ShiroConfig {
 
         // 设置需要拦截的接口和直接放行的
         Map<String, String> filterMap = new LinkedHashMap<>();
+        // 放行用户注册，登录，退出接口
+        filterMap.put("/sys/**", "anon");
+        // 放行swagger相关接口
+        filterMap.put("/doc.html", "anon");
+        filterMap.put("/webjars/**", "anon");
+        filterMap.put("/v2/api-docs", "anon");
+        filterMap.put("/swagger-resources", "anon");
         // 需要拦截的，上面filter设置啥名字，value就啥名字
         filterMap.put("/**", "shiro");
-        // 直接放行的
-        filterMap.put("/sys/*", "anon");
-        filterMap.put("/doc.html", "anon");
 
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
