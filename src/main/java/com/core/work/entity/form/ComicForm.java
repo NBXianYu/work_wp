@@ -2,14 +2,8 @@ package com.core.work.entity.form;
 
 
 import com.core.work.entity.AbstractEntity;
-import com.core.work.entity.SysUserEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.Where;
-
-import javax.persistence.*;
-import java.util.List;
 
 /***
  * @Author: 吴鹏

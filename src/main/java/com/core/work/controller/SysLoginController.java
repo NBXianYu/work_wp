@@ -81,6 +81,11 @@ public class SysLoginController extends AbstractController {
     @ApiOperation(value = "用户注册", notes = "用户注册")
     @PostMapping("/regist")
     public Result regist(@RequestBody UserForm userForm){
+
+        if (sysUserService.queryByName(userForm.getUserName()) != null || sysUserService.queryByMobile(userForm.getPhone()) != null) {
+            return Result.error("当前用户名或手机号已注册，请重新输入");
+        }
+
         sysUserService.addSysUser(UserForm.getUserByUserForm(null, userForm));
         return Result.ok().putResult("注册成功");
     }

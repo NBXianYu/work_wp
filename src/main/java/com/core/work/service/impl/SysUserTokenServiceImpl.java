@@ -20,8 +20,8 @@ public class SysUserTokenServiceImpl implements SysUserTokenService {
 	@Autowired
 	private SysUserRepository sysUserRepository;
 
-	//12小时后过期
-	private final static int EXPIRE = 3600 * 12;
+	//7天后过期
+	private final static int EXPIRE = 3600 * 24 * 7;
 
 
 	@Override
@@ -55,7 +55,7 @@ public class SysUserTokenServiceImpl implements SysUserTokenService {
 		}
 
 		SysUserEntity sysUserEntity=sysUserRepository.findById(userId).orElse(null);
-		Result result = Result.ok().put("token", token).put("expire", EXPIRE).put("user",sysUserEntity);
+		Result result = Result.ok().put("token", token).put("expire", EXPIRE).put("userId", userId);
 
 
 		return result;

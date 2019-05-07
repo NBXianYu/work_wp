@@ -72,4 +72,9 @@ public class ComicController extends AbstractController {
         return Result.ok().putResult(ComicEntity.getMiniComicVoByEntity(comicEntity));
     }
 
+//    @GetMapping(value = "/favorite")
+//    public Result favoriteComic(@RequestParam ) {
+//
+//    }
+
 }

@@ -90,4 +90,29 @@ public class UserForm {
         sysUserEntity.setUserName(userForm.getUserName());
         return sysUserEntity;
     }
+
+    /**
+     * 更新user的信息
+     */
+    public static SysUserEntity updateUserByUserForm(SysUserEntity sysUserEntity, UserForm userForm) {
+        //如果密码不为空说明需要修改密码
+        if (!StringUtils.isBlank(userForm.getPassword()) && userForm.getPassword().length() >= 6){
+            //sha256加密
+            String salt = RandomStringUtils.randomAlphanumeric(20);
+            sysUserEntity.setPassWord(new Sha256Hash(userForm.getPassword(), salt).toHex());
+            sysUserEntity.setSalt(salt);
+        }
+
+        //用户名不为空则为要修改用户名
+        if (!StringUtils.isBlank(userForm.getUserName())) {
+            sysUserEntity.setUserName(userForm.getUserName());
+        }
+
+        //手机号不为空则为要修改手机号
+        if (!StringUtils.isBlank(userForm.getPhone())) {
+            sysUserEntity.setPhone(userForm.getPhone());
+        }
+
+        return sysUserEntity;
+    }
 }
