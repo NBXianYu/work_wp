@@ -1,16 +1,21 @@
+
 spring:
     jpa:
         hibernate:
             ddl-auto: update
-        show-sql: true
         properties:
             hibernate:
+                # 使用懒加载必须配置
                 enable_lazy_load_no_trans: true
+                # 是否打印sql
+                show_sql: true
+                format_sql: false
+                use_sql_comments: true
     jackson:
         serialization:
             indent-output: true
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/work?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        url: jdbc:mysql://120.78.81.190:3306/work?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
 #        url: jdbc:mysql://172.17.0.2:3306/work?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
         username: root
         password: pass1234
@@ -45,8 +50,7 @@ server:
 stream:
     http:
         multipart:
-#            file: D:/resource/file/
-#            video: D:/resource/video/
-          file:  /home/file/
-          video: /home/video/
-
+            file: D:/resource/file/
+            video: D:/resource/video/
+#            file:  /home/file/
+#            video: /home/video/
