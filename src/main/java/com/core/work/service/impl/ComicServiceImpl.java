@@ -1,7 +1,7 @@
 package com.core.work.service.impl;
 
 import com.core.work.entity.ComicEntity;
-import com.core.work.entity.vo.ComicVo;
+import com.core.work.entity.vo.MiniComicVo;
 import com.core.work.repository.ComicRepository;
 import com.core.work.service.ComicService;
 import com.core.work.service.spec.ComicSpec;
@@ -33,9 +33,9 @@ public class ComicServiceImpl extends BaseServiceImpl<ComicEntity, ComicReposito
         // 结果map
         Map<String, Object> resultMap = new HashMap<>(5);
         // 存入结果的视图
-        List<ComicVo> comicVoList = new ArrayList<>();
+        List<MiniComicVo> comicVoList = new ArrayList<>();
         // 遍历结果，将实体转换成视图
-        entityPage.stream().map(value->ComicEntity.getHomeVoByEntity(value)).forEach(value->comicVoList.add(value));
+        entityPage.stream().map(value->ComicEntity.getMiniComicVoByEntity(value)).forEach(value->comicVoList.add(value));
         resultMap.put("entityList",comicVoList);
         resultMap.put("totalElements",entityPage.getTotalElements());
         resultMap.put("totalPages",entityPage.getTotalPages());

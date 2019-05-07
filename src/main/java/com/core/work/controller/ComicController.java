@@ -69,7 +69,7 @@ public class ComicController extends AbstractController {
         if (comicEntity == null) {
             throw new BaseException("未找到漫画详情，请刷新后重试");
         }
-        return Result.ok().putResult(ComicEntity.getDetailVoByEntity(comicEntity));
+        return Result.ok().putResult(ComicEntity.getMiniComicVoByEntity(comicEntity));
     }
 
 }

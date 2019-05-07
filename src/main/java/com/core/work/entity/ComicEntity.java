@@ -1,11 +1,10 @@
 package com.core.work.entity;
 
 
-import com.core.work.entity.vo.ComicVo;
+import com.core.work.entity.vo.MiniComicVo;
 import com.core.work.utils.EntityCopyUtil;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -21,25 +20,40 @@ import java.util.List;
 @Where(clause = "is_delete=0")
 public class ComicEntity extends AbstractEntity {
 
+    @Column(name = "source")
+    private int source;
+    @Column(name = "cid", length = 40)
+    private String cid;
     @Column(name = "title", length = 40)
-    @ApiModelProperty(name = "title", value = "漫画标题", dataType = "String")
     private String title;
+    @Column(name = "cover", length = 140)
+    private String cover;
+    @Column(name = "highlight")
+    private boolean highlight;
+    @Column(name = "local")
+    private boolean local;
 
-    @Column(name = "description", length = 200)
-    @ApiModelProperty(name = "description", value = "漫画描述", dataType = "String")
-    private String description;
+    @Column(name = "update_comic")
+    private String update;
 
-    @Column(name = "press", length = 100)
-    @ApiModelProperty(name = "press", value = "出版社", dataType = "String")
-    private String press;
-
-    @Column(name = "collectNumber")
-    @ApiModelProperty(name = "collectNumber", value = "收藏人数", dataType = "Integer")
-    private Integer collectNumber = 0;
-
-    @Column(name = "evaluate")
-    @ApiModelProperty(name = "evaluate", value = "评价：1-5等级", dataType = "Integer")
-    private Integer evaluate = 1;
+    @Column(name = "finish")
+    private Boolean finish;
+    @Column(name = "favorite")
+    private Long favorite;
+    @Column(name = "history")
+    private Long history;
+    @Column(name = "download")
+    private Long download;
+    @Column(name = "last", length = 140)
+    private String last;
+    @Column(name = "page")
+    private Integer page;
+    @Column(name = "chapter", length = 140)
+    private String chapter;
+    @Column(name = "intro", length = 140)
+    private String intro;
+    @Column(name = "author", length = 140)
+    private String author;
 
     @JsonBackReference
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
@@ -55,36 +69,108 @@ public class ComicEntity extends AbstractEntity {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCover() {
+        return cover;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
-    public String getPress() {
-        return press;
+    public boolean isHighlight() {
+        return highlight;
     }
 
-    public void setPress(String press) {
-        this.press = press;
+    public void setHighlight(boolean highlight) {
+        this.highlight = highlight;
     }
 
-    public Integer getCollectNumber() {
-        return collectNumber;
+    public boolean isLocal() {
+        return local;
     }
 
-    public void setCollectNumber(Integer collectNumber) {
-        this.collectNumber = collectNumber;
+    public void setLocal(boolean local) {
+        this.local = local;
     }
 
-    public Integer getEvaluate() {
-        return evaluate;
+    public String getUpdate() {
+        return update;
     }
 
-    public void setEvaluate(Integer evaluate) {
-        this.evaluate = evaluate;
+    public void setUpdate(String update) {
+        this.update = update;
+    }
+
+    public Boolean getFinish() {
+        return finish;
+    }
+
+    public void setFinish(Boolean finish) {
+        this.finish = finish;
+    }
+
+    public Long getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Long favorite) {
+        this.favorite = favorite;
+    }
+
+    public Long getHistory() {
+        return history;
+    }
+
+    public void setHistory(Long history) {
+        this.history = history;
+    }
+
+    public Long getDownload() {
+        return download;
+    }
+
+    public void setDownload(Long download) {
+        this.download = download;
+    }
+
+    public String getLast() {
+        return last;
+    }
+
+    public void setLast(String last) {
+        this.last = last;
+    }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public String getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(String chapter) {
+        this.chapter = chapter;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public List<SysUserEntity> getSysUserEntityList() {
@@ -95,40 +181,28 @@ public class ComicEntity extends AbstractEntity {
         this.sysUserEntityList = sysUserEntityList;
     }
 
-    @Override
-    public String toString() {
-        return "ComicEntity{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", press='" + press + '\'' +
-                ", collectNumber=" + collectNumber +
-                ", evaluate=" + evaluate +
-                ", sysUserEntityList=" + sysUserEntityList +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                ", isDelete=" + isDelete +
-                '}';
+    public int getSource() {
+        return source;
     }
 
-    /**
-     * @Author: 吴鹏
-     * @Description: home展示需要的字段
-     */
-    public static ComicVo getHomeVoByEntity(ComicEntity comicEntity) {
-        ComicVo comicVo = new ComicVo();
+    public void setSource(int source) {
+        this.source = source;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public static MiniComicVo getMiniComicVoByEntity(ComicEntity comicEntity) {
+        MiniComicVo comicVo = new MiniComicVo();
         EntityCopyUtil.copyData(comicEntity, comicVo);
-        System.out.println(comicEntity);
-        System.out.println(comicVo);
+        // 继承过来的属性不会copy，需要手动赋值一下
+        comicVo.setId(comicEntity.getId());
         return comicVo;
     }
 
-    /***
-     * @Author: 吴鹏
-     * @Description: detail详情页展示需要的字段
-     */
-    public static ComicVo getDetailVoByEntity(ComicEntity comicEntity) {
-        ComicVo comicVo = new ComicVo();
-        EntityCopyUtil.copyData(comicEntity, comicVo);
-        return comicVo;
-    }
 }
