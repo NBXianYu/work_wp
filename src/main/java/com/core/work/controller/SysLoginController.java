@@ -92,4 +92,28 @@ public class SysLoginController extends AbstractController {
         return Result.ok().putResult("注册成功");
     }
 
+    @ApiOperation(value = "用户修改密码", notes = "用户修改密码")
+    @PostMapping("/resetPassword")
+    public Result resetPassword(@RequestBody UserForm userForm){
+        System.out.println(userForm.toString());
+
+        if (userForm.getUserName().isEmpty() || userForm.getPhone().isEmpty()) {
+            return Result.error("用户名或电话号码错误");
+        }
+
+        if (userForm.getPassword() == null || userForm.getPassword().length() < 6) {
+            return Result.error("密码长度需要大于6位");
+        }
+
+        SysUserEntity user = sysUserService.queryByName(userForm.getUserName());
+
+        if (user == null || !user.getPhone().equals(userForm.getPhone())) {
+            return Result.error("用户名或电话号码错误");
+        }
+
+        sysUserService.save(UserForm.changePasswordByUserForm(user, userForm));
+
+        return Result.ok().putResult("注册成功");
+    }
+
 }

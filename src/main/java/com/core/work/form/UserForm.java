@@ -115,4 +115,21 @@ public class UserForm {
 
         return sysUserEntity;
     }
+
+    /**
+     * 更新user的密码
+     */
+    public static SysUserEntity changePasswordByUserForm(SysUserEntity sysUserEntity, UserForm userForm) {
+        //如果密码不为空说明需要修改密码
+        if (!StringUtils.isBlank(userForm.getPassword()) && userForm.getPassword().length() >= 6){
+            //sha256加密
+            String salt = RandomStringUtils.randomAlphanumeric(20);
+            sysUserEntity.setPassWord(new Sha256Hash(userForm.getPassword(), salt).toHex());
+            sysUserEntity.setSalt(salt);
+        } else {
+            throw new BaseException("密码不符合规范");
+        }
+
+        return sysUserEntity;
+    }
 }
