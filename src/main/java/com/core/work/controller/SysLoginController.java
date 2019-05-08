@@ -7,14 +7,13 @@ import com.core.work.service.SysUserService;
 import com.core.work.service.SysUserTokenService;
 import com.core.work.utils.Result;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.Map;
@@ -63,8 +62,11 @@ public class SysLoginController extends AbstractController {
     /**
      * 退出
      */
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     @ApiOperation(value = "登出", notes = "登出")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", value = "令牌", paramType = "header", dataType = "String", required = true)
+    })
     public Result logout() {
         sysUserTokenService.logout(getUserId());
         return Result.ok();
