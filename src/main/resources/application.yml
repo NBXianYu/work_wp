@@ -10,7 +10,11 @@ spring:
                 show_sql: true
                 format_sql: false
                 use_sql_comments: true
+    # jackson时间格式化
+    # 不然返回的Date格式不正常（2019-05-08T09:28:34.000+0000）
     jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
         serialization:
             indent-output: true
     datasource:

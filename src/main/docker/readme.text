@@ -6,5 +6,14 @@ mvn package:docker
 docker login --username=[阿里云账号] registry.cn-beijing.aliyuncs.com
 docker tag [ImageId] registry.cn-beijing.aliyuncs.com/wp_study/work:[镜像版本号]
 docker push registry.cn-beijing.aliyuncs.com/wp_study/work:[镜像版本号]
+
+#拉镜像
+docker pull registry.cn-beijing.aliyuncs.com/wp_study/work:[镜像版本号]
+
+#启动镜像
+docker images查看刚拉的镜像的ID
+docker run -d --name work -v /home/file:/home/file -v /home/video:/home/video -p 8081:8081 [镜像ID]
+
+
 #请根据实际镜像信息替换示例中的[ImageId]和[镜像版本号]参数。
 

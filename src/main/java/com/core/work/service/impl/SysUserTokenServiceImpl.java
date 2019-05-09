@@ -2,6 +2,7 @@ package com.core.work.service.impl;
 
 import com.core.work.entity.SysUserEntity;
 import com.core.work.entity.SysUserTokenEntity;
+import com.core.work.entity.vo.SysUserVo;
 import com.core.work.repository.SysUserRepository;
 import com.core.work.repository.SysUserTokenRepository;
 import com.core.work.service.SysUserTokenService;
@@ -55,7 +56,7 @@ public class SysUserTokenServiceImpl implements SysUserTokenService {
 		}
 
 		SysUserEntity sysUserEntity=sysUserRepository.findById(userId).orElse(null);
-		Result result = Result.ok().put("token", token).put("expire", EXPIRE).put("user",sysUserEntity);
+		Result result = Result.ok().put("token", token).put("expire", EXPIRE).put("user", SysUserVo.getHomeVoByEntity(sysUserEntity));
 
 
 		return result;
