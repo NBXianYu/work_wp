@@ -1,7 +1,7 @@
 # 基于哪个镜像
 FROM java:8
 # 维护者的信息
-MAINTAINER 70kg 1419914659@qq.com
+MAINTAINER 1419914659@qq.com
 # 将本地文件夹挂载到当前容器
 VOLUME /tmp
 

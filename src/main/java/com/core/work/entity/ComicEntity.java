@@ -4,11 +4,13 @@ package com.core.work.entity;
 import com.core.work.entity.vo.MiniComicVo;
 import com.core.work.utils.EntityCopyUtil;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /***
  * @Author: 吴鹏
@@ -56,9 +58,8 @@ public class ComicEntity extends AbstractEntity {
     private String author;
 
     @JsonBackReference
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinTable(name = "comic_user", joinColumns = {@JoinColumn(name = "comic_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "comicEntityList")
     private List<SysUserEntity> sysUserEntityList;
 
     public String getTitle() {

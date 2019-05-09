@@ -1,8 +1,8 @@
 package com.core.work.controller;
 
 import com.core.work.entity.SysUserEntity;
-import com.core.work.form.SysLoginForm;
-import com.core.work.form.UserForm;
+import com.core.work.entity.form.SysLoginForm;
+import com.core.work.entity.form.UserForm;
 import com.core.work.service.SysUserService;
 import com.core.work.service.SysUserTokenService;
 import com.core.work.utils.Result;

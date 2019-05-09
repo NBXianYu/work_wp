@@ -1,4 +1,4 @@
-package com.core.work.form;
+package com.core.work.entity.form;
 
 import com.core.work.entity.SysUserEntity;
 import com.core.work.exception.BaseException;

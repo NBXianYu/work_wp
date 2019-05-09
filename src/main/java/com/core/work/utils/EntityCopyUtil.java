@@ -3,14 +3,11 @@ package com.core.work.utils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
- * @author : 周华(姓名) 1490363962@qq.com(邮箱)
- * @date : 2018/8/30 9:37
- * @description : 复制两个对象的相同字段（不包含父类字段）
+ * @Author: 吴鹏
+ * @Description: 复制两个对象的相同字段（不包含父类字段）
  */
 public class EntityCopyUtil {
     /**
@@ -68,8 +65,19 @@ public class EntityCopyUtil {
         Class<?> clazz1 = sourceObj.getClass();
         Class<?> clazz2 = targetObj.getClass();
         //3. 获取两个类字段集合
-        Field[] fields1 = clazz1.getDeclaredFields();
-        Field[] fields2 = clazz2.getDeclaredFields();
+        List<Field> fields1 = new ArrayList<>();
+        List<Field> fields2 = new ArrayList<>();
+        // while一下，因为可能有父类
+        while (clazz1 != null) {
+            fields1.addAll(Arrays.asList(clazz1.getDeclaredFields()));
+            //得到父类,然后赋给自己
+            clazz1 = clazz1.getSuperclass();
+        }
+        while (clazz2 != null) {
+            fields2.addAll(Arrays.asList(clazz2.getDeclaredFields()));
+            //得到父类,然后赋给自己
+            clazz2 = clazz2.getSuperclass();
+        }
         //4. 遍历fields1
         for (Field f1 : fields1) {
             //4-1. 遍历fields2

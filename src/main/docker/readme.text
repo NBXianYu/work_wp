@@ -1,0 +1,10 @@
+#打包教程
+mvn clean
+mvn package:docker
+
+#将镜像推送到Registry
+docker login --username=[阿里云账号] registry.cn-beijing.aliyuncs.com
+docker tag [ImageId] registry.cn-beijing.aliyuncs.com/wp_study/work:[镜像版本号]
+docker push registry.cn-beijing.aliyuncs.com/wp_study/work:[镜像版本号]
+#请根据实际镜像信息替换示例中的[ImageId]和[镜像版本号]参数。
+

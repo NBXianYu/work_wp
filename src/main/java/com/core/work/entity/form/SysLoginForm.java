@@ -1,6 +1,6 @@
 
 
-package com.core.work.form;
+package com.core.work.entity.form;
 
 
 import io.swagger.annotations.ApiModelProperty;
@@ -19,8 +19,8 @@ public class SysLoginForm {
     @ApiModelProperty(name = "password", value = "密码", dataType = "String")
     private String password;
 
-    @ApiModelProperty(name = "captcha", value = "验证码（暂时不要，登录懒得输入）", dataType = "String")
-    private String captcha;
+//    @ApiModelProperty(name = "captcha", value = "验证码（暂时不要，登录懒得输入）", dataType = "String")
+//    private String captcha;
 
     public String getUserName() {
         return userName;
@@ -38,11 +38,4 @@ public class SysLoginForm {
         this.password = password;
     }
 
-    public String getCaptcha() {
-        return captcha;
-    }
-
-    public void setCaptcha(String captcha) {
-        this.captcha = captcha;
-    }
 }
