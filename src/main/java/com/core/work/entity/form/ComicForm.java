@@ -2,7 +2,9 @@ package com.core.work.entity.form;
 
 
 import com.core.work.entity.AbstractEntity;
+import com.core.work.entity.ComicEntity;
 import com.core.work.entity.SysUserEntity;
+import com.core.work.utils.EntityCopyUtil;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,6 +20,9 @@ import java.util.List;
 @ApiModel("漫画信息表单")
 public class ComicForm extends AbstractEntity {
 
+    @ApiModelProperty(name = "id", value = "id", dataType = "String")
+    private String id;
+
     @ApiModelProperty(name = "title", value = "漫画标题", dataType = "String")
     private String title;
 
@@ -32,6 +37,16 @@ public class ComicForm extends AbstractEntity {
 
     @ApiModelProperty(name = "evaluate", value = "评价：1-5等级", dataType = "Integer")
     private Integer evaluate = 1;
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -71,5 +86,17 @@ public class ComicForm extends AbstractEntity {
 
     public void setEvaluate(Integer evaluate) {
         this.evaluate = evaluate;
+    }
+
+    /***
+     * @Author: 吴鹏
+     * @Description: 根据表单信息返回Entity
+     */
+    public static ComicEntity getComicEntityByForm (ComicForm comicForm, ComicEntity comicEntity) {
+        if (comicEntity == null) {
+            comicEntity = new ComicEntity();
+        }
+        EntityCopyUtil.copyData(comicForm, comicEntity);
+        return comicEntity;
     }
 }

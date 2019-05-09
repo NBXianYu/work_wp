@@ -14,7 +14,7 @@ spring:
         serialization:
             indent-output: true
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/work?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        url: jdbc:mysql://120.78.81.190:3306/work_debug?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
 #        url: jdbc:mysql://172.17.0.2:3306/work?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
         username: root
         password: pass1234

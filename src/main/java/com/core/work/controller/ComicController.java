@@ -1,14 +1,19 @@
 package com.core.work.controller;
 
 import com.core.work.entity.ComicEntity;
+import com.core.work.entity.SysUserEntity;
+import com.core.work.entity.form.ComicForm;
+import com.core.work.entity.vo.ComicVo;
 import com.core.work.exception.BaseException;
 import com.core.work.service.ComicService;
+import com.core.work.service.SysUserService;
 import com.core.work.utils.Result;
 import com.core.work.validation.CheckDataUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +31,8 @@ public class ComicController extends AbstractController {
 
     @Autowired
     private ComicService comicService;
+    @Autowired
+    private SysUserService sysUserService;
 
     @GetMapping(value = "/home")
     @ApiOperation(value = "漫画首页", notes = "漫画首页")
@@ -56,7 +63,7 @@ public class ComicController extends AbstractController {
         return Result.ok();
     }
 
-    @GetMapping(value = "/info")
+    @GetMapping(value = "/detail")
     @ApiOperation(value = "漫画详情", notes = "漫画详情")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", value = "令牌", paramType = "header", dataType = "String", required = true),
@@ -69,7 +76,47 @@ public class ComicController extends AbstractController {
         if (comicEntity == null) {
             throw new BaseException("未找到漫画详情，请刷新后重试");
         }
-        return Result.ok().putResult(ComicEntity.getDetailVoByEntity(comicEntity));
+        return Result.ok().putResult(ComicVo.getDetailVoByEntity(comicEntity));
     }
+
+    @PostMapping(value = "/addOrUpdate")
+    @ApiOperation(value = "添加漫画", notes = "添加漫画")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", value = "令牌", paramType = "header", dataType = "String", required = true)
+    })
+    public Result addOrUpdate (@RequestBody ComicForm comicForm) {
+        if (comicForm == null ) {
+            throw new BaseException("数据错误，请联系管理员");
+        }
+        // id不存在就是添加
+        if (StringUtils.isBlank(comicForm.getId())) {
+            comicService.save(ComicForm.getComicEntityByForm(comicForm, null));
+        } else {
+            ComicEntity comicEntity = comicService.findById(comicForm.getId());
+            if (comicEntity == null) {
+                throw new BaseException("数据未找到，请确认后重试");
+            }
+            comicService.save(ComicForm.getComicEntityByForm(comicForm, comicEntity));
+        }
+        return Result.ok();
+    }
+
+    @GetMapping(value = "/collect")
+    @ApiOperation(value = "收藏漫画", notes = "收藏漫画")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", value = "令牌", paramType = "header", dataType = "String", required = true)
+    })
+    public Result collect () {
+        List<ComicEntity> comicEntityList = comicService.findAll();
+
+        SysUserEntity sysUserEntity = getUser();
+
+        sysUserEntity.setComicEntityList(comicEntityList);
+
+        sysUserService.save(sysUserEntity);
+
+        return Result.ok();
+    }
+
 
 }

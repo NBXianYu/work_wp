@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
  * @Description:
  * @Author: 吴鹏
  * @Email: 694798354@qq.com
- * @Param:
- * @return
  * @date 2019/1/28 0028 下午 17:12
  */
 public class HttpContextUtils {

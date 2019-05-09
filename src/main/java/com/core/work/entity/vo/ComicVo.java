@@ -1,22 +1,19 @@
 package com.core.work.entity.vo;
 
 
-import com.core.work.entity.AbstractEntity;
-import com.core.work.entity.SysUserEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.core.work.entity.ComicEntity;
+import com.core.work.utils.EntityCopyUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.Where;
 
-import javax.persistence.*;
-import java.util.List;
+import java.util.Date;
 
 /***
  * @Author: 吴鹏
  * @Description: 漫画信息视图
  */
 @ApiModel("漫画信息视图")
-public class ComicVo extends AbstractEntity {
+public class ComicVo {
 
     @ApiModelProperty(name = "title", value = "漫画标题", dataType = "String")
     private String title;
@@ -32,6 +29,12 @@ public class ComicVo extends AbstractEntity {
 
     @ApiModelProperty(name = "evaluate", value = "评价：1-5等级", dataType = "Integer")
     private Integer evaluate = 1;
+
+    private String id;
+
+    private Date gmtCreate;
+
+    private Date gmtModified;
 
     public String getTitle() {
         return title;
@@ -73,17 +76,47 @@ public class ComicVo extends AbstractEntity {
         this.evaluate = evaluate;
     }
 
-    @Override
-    public String toString() {
-        return "ComicVo{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", press='" + press + '\'' +
-                ", collectNumber=" + collectNumber +
-                ", evaluate=" + evaluate +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                ", isDelete=" + isDelete +
-                '}';
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtModified() {
+        return gmtModified;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    /**
+     * @Author: 吴鹏
+     * @Description: home展示需要的字段
+     */
+    public static ComicVo getHomeVoByEntity(ComicEntity comicEntity) {
+        ComicVo comicVo = new ComicVo();
+        EntityCopyUtil.copyData(comicEntity, comicVo);
+        return comicVo;
+    }
+
+    /***
+     * @Author: 吴鹏
+     * @Description: detail详情页展示需要的字段
+     */
+    public static ComicVo getDetailVoByEntity(ComicEntity comicEntity) {
+        ComicVo comicVo = new ComicVo();
+        EntityCopyUtil.copyData(comicEntity, comicVo);
+        return comicVo;
     }
 }

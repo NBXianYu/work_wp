@@ -1,16 +1,18 @@
 package com.core.work.service.impl;
 
 import com.core.work.entity.SysUserEntity;
+import com.core.work.entity.vo.SysUserVo;
 import com.core.work.exception.BaseException;
 import com.core.work.repository.SysUserRepository;
 import com.core.work.service.SysUserService;
+import com.core.work.service.spec.SysUserSpec;
 import com.core.work.utils.DateUtils;
+import com.core.work.utils.JpaPageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Description:
@@ -26,10 +28,6 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserRe
     @Autowired
     private SysUserRepository sysUserRepository;
 
-    @Override
-    public List<SysUserEntity> findByParams(Map<String, Object> params) {
-        return sysUserRepository.findAll();
-    }
 
     @Override
     public void addSysUser(SysUserEntity sysUserEntity) {
@@ -40,14 +38,27 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserRe
     }
 
     @Override
-    public void testQuartz(String param) {
-        System.out.println("静态定时器执行成功：" + DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
-        System.out.println("传入参数值为：" + param);
+    public Map<String, Object> getHome(Map<String, Object> params){
+
+        Page<SysUserEntity> entityPage =
+                sysUserRepository.findAll(SysUserSpec.where(params), JpaPageUtils.getPageRequest(params));
+        Map<String, Object> resultMap = new HashMap<>(5);
+        List<SysUserVo> sysUserVoList = new ArrayList<>();
+        // 遍历结果
+        entityPage.stream().map(value -> SysUserVo.getHomeVoByEntity(value)).forEach(sysUserVoList::add);
+
+        resultMap.put("entityList",sysUserVoList);
+        resultMap.put("totalElements",entityPage.getTotalElements());
+        resultMap.put("totalPages",entityPage.getTotalPages());
+        resultMap.put("size",entityPage.getSize());
+
+        return resultMap;
     }
 
     @Override
-    public SysUserEntity queryByMobile(String mobile) {
-        return sysUserRepository.findByPhone(mobile);
+    public void testQuartz(String param) {
+        System.out.println("静态定时器执行成功：" + DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        System.out.println("传入参数值为：" + param);
     }
 
     @Override

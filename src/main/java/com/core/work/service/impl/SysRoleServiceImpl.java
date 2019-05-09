@@ -20,9 +20,4 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleEntity, SysRoleRe
     @Autowired
     SysRoleRepository sysRoleRepository;
 
-    @Override
-    public List<SysRoleEntity> findByParams(Map<String, Object> params) {
-        return null;
-    }
-
 }

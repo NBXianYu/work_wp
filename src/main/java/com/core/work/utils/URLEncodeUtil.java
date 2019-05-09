@@ -6,8 +6,6 @@ import java.io.UnsupportedEncodingException;
  * @Description: url编解码
  * @Author: 吴鹏
  * @Email: 694798354@qq.com
- * @Param:
- * @return
  * @date 2019/3/18 0018 下午 17:27
  */
 public class URLEncodeUtil {

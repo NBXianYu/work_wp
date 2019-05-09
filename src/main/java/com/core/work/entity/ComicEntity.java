@@ -4,12 +4,14 @@ package com.core.work.entity;
 import com.core.work.entity.vo.ComicVo;
 import com.core.work.utils.EntityCopyUtil;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /***
  * @Author: 吴鹏
@@ -42,10 +44,9 @@ public class ComicEntity extends AbstractEntity {
     private Integer evaluate = 1;
 
     @JsonBackReference
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinTable(name = "comic_user", joinColumns = {@JoinColumn(name = "comic_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id")})
-    private List<SysUserEntity> sysUserEntityList;
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "comicEntityList")
+    private Set<SysUserEntity> sysUserEntityList;
 
     public String getTitle() {
         return title;
@@ -87,48 +88,11 @@ public class ComicEntity extends AbstractEntity {
         this.evaluate = evaluate;
     }
 
-    public List<SysUserEntity> getSysUserEntityList() {
+    public Set<SysUserEntity> getSysUserEntityList() {
         return sysUserEntityList;
     }
 
-    public void setSysUserEntityList(List<SysUserEntity> sysUserEntityList) {
+    public void setSysUserEntityList(Set<SysUserEntity> sysUserEntityList) {
         this.sysUserEntityList = sysUserEntityList;
-    }
-
-    @Override
-    public String toString() {
-        return "ComicEntity{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", press='" + press + '\'' +
-                ", collectNumber=" + collectNumber +
-                ", evaluate=" + evaluate +
-                ", sysUserEntityList=" + sysUserEntityList +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                ", isDelete=" + isDelete +
-                '}';
-    }
-
-    /**
-     * @Author: 吴鹏
-     * @Description: home展示需要的字段
-     */
-    public static ComicVo getHomeVoByEntity(ComicEntity comicEntity) {
-        ComicVo comicVo = new ComicVo();
-        EntityCopyUtil.copyData(comicEntity, comicVo);
-        System.out.println(comicEntity);
-        System.out.println(comicVo);
-        return comicVo;
-    }
-
-    /***
-     * @Author: 吴鹏
-     * @Description: detail详情页展示需要的字段
-     */
-    public static ComicVo getDetailVoByEntity(ComicEntity comicEntity) {
-        ComicVo comicVo = new ComicVo();
-        EntityCopyUtil.copyData(comicEntity, comicVo);
-        return comicVo;
     }
 }

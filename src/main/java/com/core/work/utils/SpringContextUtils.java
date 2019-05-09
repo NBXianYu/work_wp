@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
  * @Description: Spring Context 工具类
  * @Author: 吴鹏
  * @Email: 694798354@qq.com
- * @Param:
- * @return
  * @date 2019/2/20 0020 上午 10:52
  */
 @Component

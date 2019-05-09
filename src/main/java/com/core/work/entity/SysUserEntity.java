@@ -1,12 +1,17 @@
 package com.core.work.entity;
 
 
+import com.core.work.entity.vo.ComicVo;
+import com.core.work.entity.vo.SysUserVo;
+import com.core.work.utils.EntityCopyUtil;
+import com.core.work.validation.CheckDataUtils;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +26,7 @@ import java.util.List;
 @Table(name = "sys_user")
 @Where(clause = "is_delete=0")
 public class SysUserEntity extends AbstractEntity {
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "phone", length = 40)
     @ApiModelProperty(name = "phone", value = "手机号", dataType = "String")
@@ -101,13 +107,15 @@ public class SysUserEntity extends AbstractEntity {
     public String toString() {
         return "SysUserEntity{" +
                 "phone='" + phone + '\'' +
-                ", username='" + userName + '\'' +
+                ", userName='" + userName + '\'' +
                 ", passWord='" + passWord + '\'' +
                 ", salt='" + salt + '\'' +
                 ", status=" + status +
+                ", comicEntityList=" + comicEntityList +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
                 ", isDelete=" + isDelete +
                 '}';
     }
+
 }

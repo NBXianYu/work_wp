@@ -9,8 +9,6 @@ import java.util.Map;
  * @Description: 统一返回类
  * @Author: 吴鹏
  * @Email: 694798354@qq.com
- * @Param:
- * @return
  * @date 2019/2/20 0020 下午 17:46
  */
 public class Result extends HashMap<String, Object> {
