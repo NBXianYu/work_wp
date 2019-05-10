@@ -58,6 +58,8 @@ public class ShiroConfig {
         // 放行用户注册，登录
         filterMap.put("/sys/login", "anon");
         filterMap.put("/sys/regist", "anon");
+        // druid页面相关
+        filterMap.put("/druid/**", "anon");
         // 放行swagger相关接口
         filterMap.put("/doc.html", "anon");
         filterMap.put("/webjars/**", "anon");

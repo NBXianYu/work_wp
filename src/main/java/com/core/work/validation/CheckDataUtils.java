@@ -3,6 +3,7 @@ package com.core.work.validation;
 import com.core.work.exception.BaseException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Collection;
 import java.util.List;
 
 /***
@@ -17,7 +18,7 @@ public abstract class CheckDataUtils {
         }
     }
 
-    public static Boolean listIsNull (List list) {
+    public static Boolean listIsNull (Collection list) {
         if (list == null || list.size() == 0) {
             return true;
         } else {

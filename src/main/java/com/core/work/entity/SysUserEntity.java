@@ -1,25 +1,18 @@
 package com.core.work.entity;
 
 
-import com.core.work.entity.vo.ComicVo;
-import com.core.work.entity.vo.SysUserVo;
-import com.core.work.utils.EntityCopyUtil;
-import com.core.work.validation.CheckDataUtils;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * @Author 吴鹏
  * @Description:用户信息实体
- *
- * @Author
- * @Date 2018/12/20 0020 14:58
  */
 @ApiModel("用户信息实体")
 @Entity
@@ -53,7 +46,7 @@ public class SysUserEntity extends AbstractEntity {
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "comic_user", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "comic_id")})
-    private List<ComicEntity> comicEntityList;
+    private Set<ComicEntity> comicEntityList;
 
     public String getPhone() {
         return phone;
@@ -95,27 +88,29 @@ public class SysUserEntity extends AbstractEntity {
         this.status = status;
     }
 
-    public List<ComicEntity> getComicEntityList() {
+    public Set<ComicEntity> getComicEntityList() {
         return comicEntityList;
     }
 
-    public void setComicEntityList(List<ComicEntity> comicEntityList) {
+    public void setComicEntityList(Set<ComicEntity> comicEntityList) {
         this.comicEntityList = comicEntityList;
     }
 
     @Override
-    public String toString() {
-        return "SysUserEntity{" +
-                "phone='" + phone + '\'' +
-                ", userName='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' +
-                ", salt='" + salt + '\'' +
-                ", status=" + status +
-                ", comicEntityList=" + comicEntityList +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                ", isDelete=" + isDelete +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ComicEntity that = (ComicEntity) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 
 }

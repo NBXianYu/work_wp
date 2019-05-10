@@ -17,8 +17,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @Author 吴鹏
@@ -111,7 +113,7 @@ public class ComicController extends AbstractController {
 
         SysUserEntity sysUserEntity = getUser();
 
-        sysUserEntity.setComicEntityList(comicEntityList);
+        sysUserEntity.setComicEntityList(new HashSet<>(comicEntityList));
 
         sysUserService.save(sysUserEntity);
 

@@ -1,9 +1,14 @@
 spring:
+    # 环境 dev|prod
+    profiles:
+        active: dev
     jpa:
         hibernate:
             ddl-auto: update
         properties:
             hibernate:
+                # 方言
+                dialect: org.hibernate.dialect.MySQL5Dialect
                 # 使用懒加载必须配置
                 enable_lazy_load_no_trans: true
                 # 是否打印sql
@@ -17,12 +22,6 @@ spring:
         date-format: yyyy-MM-dd HH:mm:ss
         serialization:
             indent-output: true
-    datasource:
-        url: jdbc:mysql://120.78.81.190:3306/work_debug?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
-#        url: jdbc:mysql://172.17.0.2:3306/work?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
-        username: root
-        password: pass1234
-        driver-class-name: com.mysql.jdbc.Driver
     http:
         encoding:
             charset: utf-8
@@ -32,6 +31,9 @@ spring:
             max-file-size: 100MB
             max-request-size: 100MB
             enabled: true
+    mvc:
+        throw-exception-if-no-handler-found: true
+        static-path-pattern: /static/**
 
 server:
     # Tomcat
@@ -46,15 +48,7 @@ server:
         #post提交数据最大大小，设置为0不限制
         max-http-post-size: 0
     port: 8081
+    connection-timeout: 5000ms
     servlet:
         context-path: /work
-
-# 文件保存路径
-stream:
-    http:
-        multipart:
-#            file: D:/resource/file/
-#            video: D:/resource/video/
-          file:  /home/file/
-          video: /home/video/
 

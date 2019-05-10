@@ -1,8 +1,6 @@
 package com.core.work.entity;
 
 
-import com.core.work.entity.vo.ComicVo;
-import com.core.work.utils.EntityCopyUtil;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
@@ -10,7 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /***
@@ -94,5 +92,22 @@ public class ComicEntity extends AbstractEntity {
 
     public void setSysUserEntityList(Set<SysUserEntity> sysUserEntityList) {
         this.sysUserEntityList = sysUserEntityList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ComicEntity that = (ComicEntity) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }
