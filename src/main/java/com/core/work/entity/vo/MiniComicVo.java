@@ -2,7 +2,9 @@ package com.core.work.entity.vo;
 
 
 import com.core.work.entity.AbstractEntity;
+import com.core.work.entity.ComicEntity;
 import com.core.work.entity.SysUserEntity;
+import com.core.work.utils.EntityCopyUtil;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -91,5 +93,13 @@ public class MiniComicVo extends AbstractEntity {
 
     public void setLocal(boolean local) {
         this.local = local;
+    }
+
+    public static MiniComicVo getMiniComicVoByEntity(ComicEntity comicEntity) {
+        MiniComicVo comicVo = new MiniComicVo();
+        EntityCopyUtil.copyData(comicEntity, comicVo);
+        // 继承过来的属性不会copy，需要手动赋值一下
+        comicVo.setId(comicEntity.getId());
+        return comicVo;
     }
 }

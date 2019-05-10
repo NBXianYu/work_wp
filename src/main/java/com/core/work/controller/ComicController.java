@@ -1,8 +1,11 @@
 package com.core.work.controller;
 
 import com.core.work.entity.ComicEntity;
+import com.core.work.entity.SysUserEntity;
+import com.core.work.entity.vo.MiniComicVo;
 import com.core.work.exception.BaseException;
 import com.core.work.service.ComicService;
+import com.core.work.service.SysUserService;
 import com.core.work.utils.Result;
 import com.core.work.validation.CheckDataUtils;
 import io.swagger.annotations.Api;
@@ -12,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +30,8 @@ public class ComicController extends AbstractController {
 
     @Autowired
     private ComicService comicService;
+    @Autowired
+    private SysUserService sysUserService;
 
     @GetMapping(value = "/home")
     @ApiOperation(value = "漫画首页", notes = "漫画首页")
@@ -69,7 +75,24 @@ public class ComicController extends AbstractController {
         if (comicEntity == null) {
             throw new BaseException("未找到漫画详情，请刷新后重试");
         }
-        return Result.ok().putResult(ComicEntity.getMiniComicVoByEntity(comicEntity));
+        return Result.ok().putResult(MiniComicVo.getMiniComicVoByEntity(comicEntity));
+    }
+
+    @GetMapping(value = "/collect")
+    @ApiOperation(value = "收藏漫画", notes = "收藏漫画,测试接口,一键收藏所有漫画.")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", value = "令牌", paramType = "header", dataType = "String", required = true)
+    })
+    public Result collect () {
+        List<ComicEntity> comicEntityList = comicService.findAll();
+
+        SysUserEntity sysUserEntity = getUser();
+
+        sysUserEntity.setComicEntitySet(new HashSet<>(comicEntityList));
+
+        sysUserService.save(sysUserEntity);
+
+        return Result.ok();
     }
 
 //    @GetMapping(value = "/favorite")

@@ -1,15 +1,13 @@
 package com.core.work.entity;
 
 
-import com.core.work.entity.vo.MiniComicVo;
-import com.core.work.utils.EntityCopyUtil;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /***
@@ -59,8 +57,16 @@ public class ComicEntity extends AbstractEntity {
 
     @JsonBackReference
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "comicEntityList")
-    private List<SysUserEntity> sysUserEntityList;
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "comicEntitySet")
+    private Set<SysUserEntity> sysUserEntitySet;
+
+    public Set<SysUserEntity> getSysUserEntitySet() {
+        return sysUserEntitySet;
+    }
+
+    public void setSysUserEntitySet(Set<SysUserEntity> sysUserEntitySet) {
+        this.sysUserEntitySet = sysUserEntitySet;
+    }
 
     public String getTitle() {
         return title;
@@ -174,14 +180,6 @@ public class ComicEntity extends AbstractEntity {
         this.author = author;
     }
 
-    public List<SysUserEntity> getSysUserEntityList() {
-        return sysUserEntityList;
-    }
-
-    public void setSysUserEntityList(List<SysUserEntity> sysUserEntityList) {
-        this.sysUserEntityList = sysUserEntityList;
-    }
-
     public int getSource() {
         return source;
     }
@@ -198,12 +196,21 @@ public class ComicEntity extends AbstractEntity {
         this.cid = cid;
     }
 
-    public static MiniComicVo getMiniComicVoByEntity(ComicEntity comicEntity) {
-        MiniComicVo comicVo = new MiniComicVo();
-        EntityCopyUtil.copyData(comicEntity, comicVo);
-        // 继承过来的属性不会copy，需要手动赋值一下
-        comicVo.setId(comicEntity.getId());
-        return comicVo;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ComicEntity that = (ComicEntity) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 
 }

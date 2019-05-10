@@ -58,12 +58,14 @@ public class ShiroConfig {
         // 放行用户注册，登录
         filterMap.put("/sys/login", "anon");
         filterMap.put("/sys/regist", "anon");
-        filterMap.put("/sys/resetPassword", "anon");
+        // druid页面相关
+        filterMap.put("/druid/**", "anon");
         // 放行swagger相关接口
         filterMap.put("/doc.html", "anon");
         filterMap.put("/webjars/**", "anon");
         filterMap.put("/v2/api-docs", "anon");
         filterMap.put("/swagger-resources", "anon");
+
         // 需要拦截的，上面filter设置啥名字，value就啥名字
         filterMap.put("/**", "shiro");
         // 拦截登出接口

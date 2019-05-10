@@ -35,7 +35,7 @@ public class ComicServiceImpl extends BaseServiceImpl<ComicEntity, ComicReposito
         // 存入结果的视图
         List<MiniComicVo> comicVoList = new ArrayList<>();
         // 遍历结果，将实体转换成视图
-        entityPage.stream().map(value->ComicEntity.getMiniComicVoByEntity(value)).forEach(value->comicVoList.add(value));
+        entityPage.stream().map(value->MiniComicVo.getMiniComicVoByEntity(value)).forEach(value->comicVoList.add(value));
         resultMap.put("entityList",comicVoList);
         resultMap.put("totalElements",entityPage.getTotalElements());
         resultMap.put("totalPages",entityPage.getTotalPages());

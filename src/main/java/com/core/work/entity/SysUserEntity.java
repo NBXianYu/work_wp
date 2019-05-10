@@ -7,7 +7,8 @@ import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * @Author 吴鹏
@@ -47,7 +48,7 @@ public class SysUserEntity extends AbstractEntity {
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "comic_user", joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "comic_id")})
-    private List<ComicEntity> comicEntityList;
+    private Set<ComicEntity> comicEntitySet;
 
     public String getPhone() {
         return phone;
@@ -89,25 +90,28 @@ public class SysUserEntity extends AbstractEntity {
         this.status = status;
     }
 
-    public List<ComicEntity> getComicEntityList() {
-        return comicEntityList;
+    public Set<ComicEntity> getComicEntitySet() {
+        return comicEntitySet;
     }
 
-    public void setComicEntityList(List<ComicEntity> comicEntityList) {
-        this.comicEntityList = comicEntityList;
+    public void setComicEntitySet(Set<ComicEntity> comicEntitySet) {
+        this.comicEntitySet = comicEntitySet;
     }
 
     @Override
-    public String toString() {
-        return "SysUserEntity{" +
-                "phone='" + phone + '\'' +
-                ", username='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' +
-                ", salt='" + salt + '\'' +
-                ", status=" + status +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                ", isDelete=" + isDelete +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ComicEntity that = (ComicEntity) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }
