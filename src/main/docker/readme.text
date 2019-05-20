@@ -1,6 +1,9 @@
+#windows安装docker教程: https://blog.csdn.net/wu__peng/article/details/89886686
+#CentOs安装docker教程: https://blog.csdn.net/wu__peng/article/details/89888340
+
 #打包教程
 mvn clean
-mvn package:docker
+mvn package docker:build
 
 #将镜像推送到Registry
 docker login --username=[阿里云账号] registry.cn-beijing.aliyuncs.com
