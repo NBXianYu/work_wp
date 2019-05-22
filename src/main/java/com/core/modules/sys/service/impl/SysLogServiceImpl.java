@@ -22,7 +22,7 @@ public class SysLogServiceImpl extends BaseServiceImpl<SysLogEntity, SysLogRepos
     @Override
     public Result getHome(Map<String, Object> params) {
         Page<SysLogEntity> entityPage = repository.findAll(SysLogSpec.where(params), JpaPageUtils.getPageRequest(params));
-        return Result.ok().putResult(entityPage).putTotal(entityPage.getTotalElements());
+        return Result.ok().putResult(entityPage.getContent()).putTotal(entityPage.getTotalElements());
     }
 
 }

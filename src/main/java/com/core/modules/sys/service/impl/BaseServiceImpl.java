@@ -77,6 +77,7 @@ public abstract class BaseServiceImpl<T extends AbstractEntity, R extends BaseRe
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public T save(T entity) {
         return repository.save(entity);
     }

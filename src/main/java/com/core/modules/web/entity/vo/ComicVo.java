@@ -1,4 +1,4 @@
-package com.core.modules.sys.entity.vo;
+package com.core.modules.web.entity.vo;
 
 
 import com.core.modules.web.entity.ComicEntity;

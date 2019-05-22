@@ -8,7 +8,7 @@ import com.core.modules.sys.controller.AbstractController;
 import com.core.modules.web.entity.ComicEntity;
 import com.core.modules.sys.entity.SysUserEntity;
 import com.core.modules.web.entity.form.ComicForm;
-import com.core.modules.sys.entity.vo.ComicVo;
+import com.core.modules.web.entity.vo.ComicVo;
 import com.core.common.exception.BaseException;
 import com.core.modules.web.service.ComicService;
 import com.core.modules.sys.service.SysUserService;

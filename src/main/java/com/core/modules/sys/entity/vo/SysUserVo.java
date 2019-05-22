@@ -4,6 +4,7 @@ package com.core.modules.sys.entity.vo;
 import com.core.modules.sys.entity.SysUserEntity;
 import com.core.common.utils.EntityCopyUtil;
 import com.core.common.validator.CheckDataUtils;
+import com.core.modules.web.entity.vo.ComicVo;
 import lombok.Data;
 
 import java.util.ArrayList;

@@ -5,7 +5,7 @@ import com.core.modules.sys.service.impl.BaseServiceImpl;
 import com.core.modules.web.repository.ComicRepository;
 import com.core.modules.web.service.spec.ComicSpec;
 import com.core.modules.web.entity.ComicEntity;
-import com.core.modules.sys.entity.vo.ComicVo;
+import com.core.modules.web.entity.vo.ComicVo;
 import com.core.modules.web.service.ComicService;
 import com.core.common.utils.JpaPageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
