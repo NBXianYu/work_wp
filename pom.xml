@@ -20,7 +20,7 @@
         <fastjson.version>1.2.56</fastjson.version>
         <swagger.version>2.7.0</swagger.version>
         <swaggerui.version>2.7.0</swaggerui.version>
-        <shiro.version>1.4.0</shiro.version>
+        <shiro.version>1.5.0</shiro.version>
         <httpstatus.version>4.5.3</httpstatus.version>
         <quartz.version>2.3.0</quartz.version>
         <lang3.version>3.8</lang3.version>
